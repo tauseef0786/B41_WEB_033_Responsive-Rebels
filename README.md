@@ -53,6 +53,8 @@ Team :
 index.html <br />
 package.json <br />
 
+![graph](https://github.com/user-attachments/assets/45eb5b03-021e-4343-aebc-e48a3e55738f)
+
 
 ## Video Walkthrough of the project
 https://youtu.be/rWzSINlJxbc 
