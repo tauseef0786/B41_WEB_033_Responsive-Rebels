@@ -1,11 +1,7 @@
-import React from 'react';
-
-// Function to generate a random count for the reports
-const generateRandomCount = () => {
-  return Math.floor(Math.random() * 1000); // Random number between 0 and 1000
-};
+import React, { useEffect, useState } from 'react';
 
 const Category = () => {
+  const [reportCounts, setReportCounts] = useState({});
   const categories = [
     "Theft",
     "Robbery",
@@ -16,6 +12,39 @@ const Category = () => {
     "Domestic Violence",
     "Others"
   ];
+
+  useEffect(() => {
+    // Fetch the data from the Firebase API
+    const fetchReportCounts = async () => {
+      try {
+        const response = await fetch('https://project-2d5f7-default-rtdb.firebaseio.com/crimereport.json');
+        const data = await response.json();
+
+        // Initialize an object to store the count of reports per category
+        const counts = categories.reduce((acc, category) => {
+          acc[category] = 0; // Start with 0 count for each category
+          return acc;
+        }, {});
+
+        // Count the reports by category
+        for (let id in data) {
+          const report = data[id];
+          const category = report.category;
+
+          if (counts.hasOwnProperty(category)) {
+            counts[category] += 1; // Increment the count for this category
+          }
+        }
+
+        // Update the state with the counts
+        setReportCounts(counts);
+      } catch (error) {
+        console.error('Error fetching crime reports:', error);
+      }
+    };
+
+    fetchReportCounts();
+  }, []); // Empty dependency array ensures this runs only once on mount
 
   return (
     <div className="min-h-screen bg-[#3096894D] flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -32,7 +61,7 @@ const Category = () => {
             <div className="text-center">
               <h3 className="text-2xl font-semibold text-gray-800 mb-4">{category}</h3>
               <p className="text-3xl font-bold text-indigo-600">
-                {generateRandomCount()} Reports
+                {reportCounts[category] || 0} Reports
               </p>
             </div>
           </div>
