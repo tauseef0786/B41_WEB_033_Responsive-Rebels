@@ -58,10 +58,19 @@ import logo from "../assets/logo.svg";
 
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  let local = localStorage.getItem('idToken') || false
+  const [token,setToken ] = useState(local)
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  function toggleToken(){
+    if (token){
+      localStorage.removeItem('idToken')
+      setToken(false)
+    }
+  }
 
   return (
     <nav className="bg-teal-900 text-white px-6 py-4 shadow-md border-b sticky top-0 z-50">
@@ -76,14 +85,14 @@ export const Navbar = () => {
 
         {/* Desktop Navigation Links */}
         <div className="hidden md:flex space-x-6">
-          <Link to="/about" className="hover:text-gray-300">
-            About Us
-          </Link>
           <Link to="/crime-reports" className="hover:text-gray-300">
             Crime Reports
           </Link>
           <Link to="/crime-responses" className="hover:text-gray-300">
             Crime Responses
+          </Link>
+          <Link to="/about" className="hover:text-gray-300">
+            About Us
           </Link>
           <Link to="/contact-us" className="hover:text-gray-300">
             Contact Us
@@ -92,14 +101,17 @@ export const Navbar = () => {
 
         {/* Authentication Buttons */}
         <div className="hidden md:flex space-x-4">
-          <Link to="/login" className="hover:underline">
+          {/* <Link to="/login" className="hover:underline">
             Login
-          </Link>
+          </Link> */}
           <Link
             to="/register"
             className="bg-teal-700 text-white px-4 py-2 rounded-lg hover:bg-teal-600"
+            onClick={function(){
+              toggleToken()
+            }}
           >
-            Register
+            {token ? 'Log Out' : 'Register'}
           </Link>
         </div>
 
@@ -131,13 +143,6 @@ export const Navbar = () => {
         {/* Mobile Navigation Links */}
         <div className="flex flex-col items-center justify-center h-full space-y-6 text-xl font-medium">
           <Link
-            to="/about"
-            className="hover:text-teal-300"
-            onClick={toggleMobileMenu}
-          >
-            About Us
-          </Link>
-          <Link
             to="/crime-reports"
             className="hover:text-teal-300"
             onClick={toggleMobileMenu}
@@ -152,25 +157,35 @@ export const Navbar = () => {
             Crime Responses
           </Link>
           <Link
+            to="/about"
+            className="hover:text-teal-300"
+            onClick={toggleMobileMenu}
+          >
+            About Us
+          </Link>
+          <Link
             to="/contact-us"
             className="hover:text-teal-300"
             onClick={toggleMobileMenu}
           >
             Contact Us
           </Link>
-          <Link
+          {/* <Link
             to="/login"
             className="hover:text-teal-300"
             onClick={toggleMobileMenu}
           >
             Login
-          </Link>
+          </Link> */}
           <Link
             to="/register"
             className="bg-teal-700 text-white px-4 py-2 rounded-lg hover:bg-teal-600"
-            onClick={toggleMobileMenu}
+            onClick={function(){
+              toggleMobileMenu()
+              toggleToken()
+            }}
           >
-            Register
+            {token ? 'Log Out' : 'Register'}
           </Link>
         </div>
       </div>
