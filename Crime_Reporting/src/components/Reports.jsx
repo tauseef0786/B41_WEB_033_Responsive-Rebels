@@ -1,14 +1,14 @@
-
-
 import React, { useEffect, useState } from "react";
 import { BsBookmarkStar } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import ReportCardLogo from "../assets/ReportCardsLogo.svg";
+import { useTheme } from "./ThemeContext"; // Import useTheme to get the theme
 
 export const Reports = () => {
   const [crimeReports, setCrimeReports] = useState([]); // All fetched reports
   const [crimeCountsByYear, setCrimeCountsByYear] = useState({}); // Crime count grouped by year
   const [isLoading, setIsLoading] = useState(true); // Loading state
+  const { theme } = useTheme(); // Get the current theme
 
   useEffect(() => {
     fetch("https://project-2d5f7-default-rtdb.firebaseio.com/crimereport.json")
@@ -52,15 +52,15 @@ export const Reports = () => {
   }
 
   return (
-    <div className="space-y-6 p-6 sm:p-10 md:p-20">
+    <div className={`space-y-6 p-6 sm:p-10 md:p-20 ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
       {Object.keys(crimeCountsByYear).sort((a, b) => b - a).map((year) => (
         <div
           key={year}
-          className="bg-white rounded-lg shadow-md px-16 py-6 border flex justify-between items-center"
+          className={`rounded-lg shadow-md px-16 py-6 border flex justify-between items-center ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}`}
         >
           <div className="flex items-start space-x-4">
             <div className="flex-col">
-              <span className="bg-teal-100 text-teal-600 text-sm font-medium px-3 py-1 rounded-md">
+              <span className={`text-sm font-medium px-3 py-1 rounded-md ${theme === 'dark' ? 'bg-teal-600 text-teal-100' : 'bg-teal-100 text-teal-600'}`}>
                 Year: {year}
               </span>
 
@@ -71,8 +71,10 @@ export const Reports = () => {
                   className="w-12 h-12"
                 />
                 <div className="px-4">
-                  <p className="text-2xl font-bold">Total Crimes in {year}</p>
-                  <p className="text-lg font-semibold text-gray-500">
+                  <p className={`text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                    Total Crimes in {year}
+                  </p>
+                  <p className={`text-lg font-semibold ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
                     Crimes: {crimeCountsByYear[year]}
                   </p>
                 </div>
@@ -81,13 +83,13 @@ export const Reports = () => {
           </div>
 
           <div className="flex flex-col items-end space-y-2">
-            <button className="p-2">
+            <button className={`p-2 ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>
               <BsBookmarkStar />
             </button>
 
             <Link
               to={`/report-details/${year}`}
-              className="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-500"
+              className={`px-4 py-2 rounded-lg ${theme === 'dark' ? 'bg-teal-600 text-white hover:bg-teal-500' : 'bg-teal-600 text-white hover:bg-teal-500'}`}
             >
               See More
             </Link>

@@ -1,24 +1,26 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaSun, FaMoon } from "react-icons/fa"; 
+import { useTheme } from "../components/ThemeContext"; 
 import logo from "../assets/logo.svg";
 
 export const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  let local = localStorage.getItem('idToken') || false
-  const [token,setToken ] = useState(local)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const { theme, toggleTheme } = useTheme();
+  let local = localStorage.getItem("idToken") || false;
+  const [token, setToken] = React.useState(local);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  function toggleToken(){
-    if (token){
-      localStorage.removeItem('idToken')
-      setToken(false)
+  const toggleToken = () => {
+    if (token) {
+      localStorage.removeItem("idToken");
+      setToken(false);
     }
-  }
+  };
 
   return (
     <nav className="bg-teal-900 text-white px-6 py-4 shadow-md border-b sticky top-0 z-50">
@@ -47,19 +49,28 @@ export const Navbar = () => {
           </Link>
         </div>
 
-        {/* Authentication Buttons */}
-        <div className="hidden md:flex space-x-4">
-          {/* <Link to="/login" className="hover:underline">
-            Login
-          </Link> */}
+        {/* Right Section */}
+        <div className="hidden md:flex items-center space-x-4">
+          {/* Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-lg bg-teal-700 hover:bg-teal-600"
+            aria-label="Toggle Theme"
+          >
+            {theme === "light" ? (
+              <FaMoon className="text-yellow-400 text-xl" />
+            ) : (
+              <FaSun className="text-yellow-400 text-xl" />
+            )}
+          </button>
+
+          {/* Authentication Button */}
           <Link
             to="/register"
             className="bg-teal-700 text-white px-4 py-2 rounded-lg hover:bg-teal-600"
-            onClick={function(){
-              toggleToken()
-            }}
+            onClick={toggleToken}
           >
-            {token ? 'Log Out' : 'Register'}
+            {token ? "Log Out" : "Register"}
           </Link>
         </div>
 
@@ -118,23 +129,32 @@ export const Navbar = () => {
           >
             Contact Us
           </Link>
-          {/* <Link
-            to="/login"
-            className="hover:text-teal-300"
-            onClick={toggleMobileMenu}
-          >
-            Login
-          </Link> */}
           <Link
             to="/register"
             className="bg-teal-700 text-white px-4 py-2 rounded-lg hover:bg-teal-600"
-            onClick={function(){
-              toggleMobileMenu()
-              toggleToken()
+            onClick={() => {
+              toggleMobileMenu();
+              toggleToken();
             }}
           >
-            {token ? 'Log Out' : 'Register'}
+            {token ? "Log Out" : "Register"}
           </Link>
+
+          {/* Theme Toggle Button */}
+          <button
+            onClick={() => {
+              toggleMobileMenu();
+              toggleTheme();
+            }}
+            className="p-2 rounded-lg bg-teal-700 hover:bg-teal-600"
+            aria-label="Toggle Theme"
+          >
+            {theme === "light" ? (
+              <FaMoon className="text-yellow-400 text-2xl" />
+            ) : (
+              <FaSun className="text-yellow-400 text-2xl" />
+            )}
+          </button>
         </div>
       </div>
     </nav>

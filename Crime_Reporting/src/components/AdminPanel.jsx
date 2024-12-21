@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import { useTheme } from "./ThemeContext"; // Assuming ThemeContext is used globally
 
 const AdminPanel = () => {
   const [crimeReports, setCrimeReports] = useState([]);
@@ -87,9 +88,12 @@ const AdminPanel = () => {
     return 0;
   });
 
+  // Get current theme from context
+  const { theme } = useTheme();
+
   return (
-    <div className="p-8 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6">Admin Panel</h1>
+    <div className={`p-8 min-h-screen ${theme === "dark" ? "bg-gray-800" : "bg-gray-100"}`}>
+      <h1 className={`text-3xl font-bold mb-6 ${theme === "dark" ? "text-white" : "text-black"}`}>Admin Panel</h1>
 
       {/* Search and Sort */}
       <div className="flex items-center mb-6 space-x-4">
@@ -98,51 +102,53 @@ const AdminPanel = () => {
           placeholder="Search by Case Number"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="p-2 border border-gray-300 rounded-lg"
+          className={`p-2 border ${theme === "dark" ? "border-gray-700" : "border-gray-300"} rounded-lg bg-${theme === "dark" ? "gray-900" : "white"} text-${theme === "dark" ? "white" : "black"}`}
         />
         <select
           value={sortOption}
           onChange={(e) => setSortOption(e.target.value)}
-          className="p-2 border border-gray-300 rounded-lg"
+          className={`p-2 border ${theme === "dark" ? "border-gray-700" : "border-gray-300"} rounded-lg bg-${theme === "dark" ? "gray-900" : "white"} text-${theme === "dark" ? "white" : "black"}`}
         >
           <option value="date">Sort by Date</option>
           <option value="status">Sort by Status</option>
         </select>
       </div>
 
-      {/* Reports */}
+      {/* Loading Spinner */}
       {loading ? (
-        <p>Loading reports...</p>
+        <div className="flex justify-center items-center">
+          <div className="w-16 h-16 border-4 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
+        </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredReports.map((report) => (
             <div
               key={report.firebaseId}
-              className="bg-white shadow-md rounded-lg p-4 flex flex-col"
+              className={`bg-${theme === "dark" ? "gray-700" : "white"} shadow-md rounded-lg p-4 flex flex-col`}
             >
               {/* Header */}
-              <h2 className="text-lg font-bold mb-2">{report.caseNumber}</h2>
-              <p className="text-sm text-gray-600 mb-4">
+              <h2 className={`text-lg font-bold mb-2 ${theme === "dark" ? "text-white" : "text-black"}`}>{report.caseNumber}</h2>
+              <p className={`text-sm ${theme === "dark" ? "text-gray-300" : "text-gray-600"} mb-4`}>
                 ID: {report.id} | Date: {new Date(report.date).toLocaleDateString()}
               </p>
 
               {/* Body */}
-              <p className="text-gray-700">
+              <p className={`text-${theme === "dark" ? "gray-300" : "gray-700"}`}>
                 <strong>Category:</strong> {report.category}
               </p>
-              <p className="text-gray-700">
+              <p className={`text-${theme === "dark" ? "gray-300" : "gray-700"}`}>
                 <strong>Description:</strong> {report.description}
               </p>
-              <p className="text-gray-700">
+              <p className={`text-${theme === "dark" ? "gray-300" : "gray-700"}`}>
                 <strong>Location:</strong> {report.location}
               </p>
-              <p className="text-gray-700">
+              <p className={`text-${theme === "dark" ? "gray-300" : "gray-700"}`}>
                 <strong>Status:</strong>
               </p>
               <select
                 value={report.status}
                 onChange={(e) => updateStatus(report.firebaseId, e.target.value)}
-                className="p-2 border border-gray-300 rounded-lg w-full mb-4"
+                className={`p-2 border ${theme === "dark" ? "border-gray-700" : "border-gray-300"} rounded-lg w-full mb-4 bg-${theme === "dark" ? "gray-900" : "white"} text-${theme === "dark" ? "white" : "black"}`}
               >
                 <option value="Pending">Pending</option>
                 <option value="Processing">Processing</option>
@@ -151,12 +157,12 @@ const AdminPanel = () => {
 
               {/* Actions */}
               <div className="flex justify-between mt-auto">
-                <Link to={`/edit-report/${report.firebaseId}`} className="text-blue-600">
+                <Link to={`/edit-report/${report.firebaseId}`} className={`text-${theme === "dark" ? "blue-400" : "blue-600"}`}>
                   <FaEdit size={20} />
                 </Link>
                 <button
                   onClick={() => deleteReport(report.firebaseId)}
-                  className="text-red-600"
+                  className={`text-${theme === "dark" ? "red-400" : "red-600"}`}
                 >
                   <FaTrash size={20} />
                 </button>

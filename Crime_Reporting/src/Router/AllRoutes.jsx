@@ -14,6 +14,7 @@ import Signin from '../components/auth/Signin';
 import AfterRegister from '../pages/AfterRegister';
 import AfterLogin from '../pages/AfterLogin';
 import Contact from '../components/contact/Contact'
+import CrimeCategoryGraph from '../components/CrimeCategoryGraph';
 
 const AllRoutes = () => {
   return (
@@ -33,6 +34,7 @@ const AllRoutes = () => {
       <Route path='/form' element={<Form />} />
       <Route path='/register' element={<Signup />} />
       <Route path='/login' element={<Signin />} />
+      <Route path='/crime-category/:category'element={<CrimeCategoryGraph />}/>
     </Routes>
   );
 };
