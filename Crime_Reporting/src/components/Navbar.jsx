@@ -1,4 +1,5 @@
-import React from "react";
+
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes, FaSun, FaMoon } from "react-icons/fa"; 
 import { useTheme } from "../components/ThemeContext"; 
@@ -43,7 +44,7 @@ export const Navbar = () => {
           <Link to="/about" className="hover:text-gray-300">
             About Us
           </Link>
-          <Link to="/contact-us" className="hover:text-gray-300">
+          <Link to="/contact" className="hover:text-gray-300">
             Contact Us
           </Link>
         </div>
@@ -122,7 +123,7 @@ export const Navbar = () => {
             About Us
           </Link>
           <Link
-            to="/contact-us"
+            to="/contact"
             className="hover:text-teal-300"
             onClick={toggleMobileMenu}
           >
