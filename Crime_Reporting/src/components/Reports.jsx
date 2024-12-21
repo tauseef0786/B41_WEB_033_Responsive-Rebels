@@ -52,7 +52,7 @@ export const Reports = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-6 sm:p-10 md:p-20">
       {Object.keys(crimeCountsByYear).sort((a, b) => b - a).map((year) => (
         <div
           key={year}
