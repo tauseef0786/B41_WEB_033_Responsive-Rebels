@@ -57,7 +57,7 @@ package.json <br />
 
 
 ## Video Walkthrough of the project
-https://youtu.be/rWzSINlJxbc 
+https://www.youtube.com/watch?v=Kua9CSnfh8Y
 
 ![admin](https://github.com/user-attachments/assets/7eb7762d-1307-4ff1-9b00-a618f16645ef)
 
