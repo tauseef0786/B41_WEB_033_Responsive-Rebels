@@ -1,0 +1,45 @@
+/* Tailwind Directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base light and dark mode styles */
+html.light {
+  background-color: #f9fafb; 
+  color: #1a202c; 
+}
+
+html.dark {
+  background-color: #1a202c; 
+  color: #f7fafc; 
+}
+
+/* Global Card Styles */
+.card {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Card Styles for Light Mode */
+html.light .card {
+  background-color: #ffffff; 
+  color: #1a202c; 
+  border: 1px solid #e2e8f0; 
+}
+
+/* Card Styles for Dark Mode */
+html.dark .card {
+  background-color: #2d3748; 
+  color: #f7fafc; 
+  border: 1px solid #4a5568; 
+}
+
+/* Button Styles for Light Mode */
+html.light .btn {
+  background-color: #38b2ac;
+  color: white;
+}
+
+html.dark .btn {
+  background-color: #4fd1c5; 
+  color: black;
+}
