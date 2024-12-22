@@ -7,14 +7,11 @@ const News = () => {
 
   return (
     <div className="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
-      {/* Main Heading */}
       <h2 className="text-4xl font-extrabold text-center text-gray-900 mb-12">
         News and Blog Of Recent Crimes
       </h2>
 
-      {/* Two Boxes Side by Side */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-        {/* First Box */}
         <div
           className="cursor-pointer rounded-lg shadow-lg overflow-hidden bg-white hover:shadow-2xl transition duration-300"
           onClick={redirectToNewsPage}

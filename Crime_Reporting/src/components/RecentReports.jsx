@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 const RecentReports = () => {
   const [reports, setReports] = useState([]);
 
-  // Fetching data from the API
   useEffect(() => {
     const fetchReports = async () => {
       try {
@@ -12,13 +11,11 @@ const RecentReports = () => {
         );
         const data = await response.json();
 
-        // Convert the data into an array and limit it to the most recent 10 reports
         const reportsArray = Object.keys(data).map((key) => ({
           ...data[key],
           id: key,
         }));
 
-        // Sorting by date (latest first) and taking the top 10
         const sortedReports = reportsArray
           .sort((a, b) => new Date(b.date) - new Date(a.date))
           .slice(0, 10);

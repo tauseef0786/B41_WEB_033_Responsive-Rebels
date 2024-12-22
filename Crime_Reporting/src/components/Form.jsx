@@ -25,7 +25,7 @@ const CrimeReportForm = () => {
       date,
       year,
       caseNumber: `CASE-${Math.floor(Math.random() * 1000000)}`,
-      id: Date.now(), // Use current timestamp for unique ID
+      id: Date.now(), 
     };
 
     try {
@@ -39,7 +39,7 @@ const CrimeReportForm = () => {
 
       if (response.ok) {
         setMessage('Crime report submitted successfully!');
-        navigate('/after-report');  // Navigate to ThanksPage component
+        navigate('/after-report'); 
       } else {
         setMessage('Failed to submit the report. Please try again.');
       }

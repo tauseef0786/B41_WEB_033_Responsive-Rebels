@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Banner from './Banner';
-import { FaArrowDown } from 'react-icons/fa';  // Importing React icon
-import { useTheme } from "./ThemeContext"; // Importing ThemeContext
+import { FaArrowDown } from 'react-icons/fa';  
+import { useTheme } from "./ThemeContext"; 
 
 const CrimeReports = () => {
   const [complaints, setComplaints] = useState([]);
@@ -21,11 +21,10 @@ const CrimeReports = () => {
         id: key,
       }));
 
-      // Sort complaints by date (newest first)
       complaintsArray.sort((a, b) => {
-        const dateA = new Date(a.date); // Assuming 'date' is a field in complaint
+        const dateA = new Date(a.date); 
         const dateB = new Date(b.date);
-        return dateB - dateA; // Descending order, newest first
+        return dateB - dateA; 
       });
 
       setComplaints(complaintsArray);
@@ -40,7 +39,7 @@ const CrimeReports = () => {
     fetchData();
   }, []);
 
-  const { theme } = useTheme(); // Use the theme from ThemeContext
+  const { theme } = useTheme(); 
 
   if (loading) {
     return (
@@ -50,12 +49,10 @@ const CrimeReports = () => {
     );
   }
 
-  // Get the complaints for the current page
   const indexOfLastComplaint = currentPage * complaintsPerPage;
   const indexOfFirstComplaint = indexOfLastComplaint - complaintsPerPage;
   const currentComplaints = complaints.slice(indexOfFirstComplaint, indexOfLastComplaint);
 
-  // Handle "See More" button click
   const handleSeeMore = () => {
     if (indexOfLastComplaint < complaints.length) {
       setCurrentPage(currentPage + 1);
@@ -68,7 +65,6 @@ const CrimeReports = () => {
     <>
       <Banner />
       <section className={`p-6 ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>
-        {/* Crime Statistics Overview */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-6">
           <div className={`p-6 rounded-xl shadow-lg transform transition duration-300 hover:scale-105 ${theme === 'dark' ? 'bg-blue-700' : 'bg-blue-500'} text-white hover:${theme === 'dark' ? 'bg-blue-600' : 'bg-blue-400'}`}>
             <h3 className="text-3xl font-bold">{complaints.filter(complaint => complaint.status === 'Pending').length}</h3>
@@ -84,13 +80,11 @@ const CrimeReports = () => {
           </div>
         </div>
 
-        {/* Complaint Filter Section */}
         <div className="flex justify-between items-center mb-4 flex-wrap">
           <button className={`px-6 py-2 rounded-lg transition duration-300 hover:bg-gray-400 ${theme === 'dark' ? 'bg-gray-700 text-white' : 'bg-gray-300 text-black'} hover:${theme === 'dark' ? 'bg-gray-600' : 'bg-gray-400'}`}>Complaints</button>
           <button className={`px-6 py-2 rounded-lg transition duration-300 hover:bg-gray-400 ${theme === 'dark' ? 'bg-gray-700 text-white' : 'bg-gray-300 text-black'} hover:${theme === 'dark' ? 'bg-gray-600' : 'bg-gray-400'}`}>People Responses</button>
         </div>
 
-        {/* Complaints Table Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="overflow-x-auto">
             <table className={`table-auto w-full text-left border-collapse ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
@@ -122,7 +116,6 @@ const CrimeReports = () => {
             </table>
           </div>
 
-          {/* Location Map Section (Delhi) */}
           <div className={`h-[400px] sm:h-[500px] rounded-lg shadow-md ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-100'}`}>
             <h3 className={`text-xl font-bold mb-4 p-4 ${theme === 'dark' ? 'text-white' : 'text-black'}`}>Location: Delhi</h3>
             <iframe
@@ -136,7 +129,6 @@ const CrimeReports = () => {
           </div>
         </div>
 
-        {/* See More Button */}
         <div className="flex justify-center items-center mt-6">
           {indexOfLastComplaint < complaints.length && (
             <button

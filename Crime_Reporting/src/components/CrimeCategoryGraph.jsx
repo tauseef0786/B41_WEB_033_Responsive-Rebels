@@ -25,11 +25,10 @@ const CrimeCategoryGraph = () => {
     fetchData();
   }, [year]);
 
-  // Function to generate chart data
   const generateGraphData = () => {
-    const categories = [...new Set(crimeData.map(item => item.category))]; // Get unique categories
+    const categories = [...new Set(crimeData.map(item => item.category))]; 
     const statusCount = categories.map(category => {
-      const statusMap = { Pending: 0, Processing: 0, Resolved: 0 }; // Initialize counts for each status
+      const statusMap = { Pending: 0, Processing: 0, Resolved: 0 }; 
       crimeData.forEach(item => {
         if (item.category === category) {
           statusMap[item.status] = (statusMap[item.status] || 0) + 1;
@@ -71,7 +70,6 @@ const CrimeCategoryGraph = () => {
     });
   };
 
-  // Re-generate the graph whenever crime data or year changes
   useEffect(() => {
     if (crimeData.length > 0) {
       generateGraphData();

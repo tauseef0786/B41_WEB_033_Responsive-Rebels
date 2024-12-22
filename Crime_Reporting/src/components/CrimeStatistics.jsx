@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
-import { useTheme } from './ThemeContext'; // Importing useTheme from ThemeContext
+import { useTheme } from './ThemeContext'; 
 
 export const CrimeStatistics = () => {
-  const { theme } = useTheme(); // Get the current theme from context
+  const { theme } = useTheme(); 
   const [totalVisits, setTotalVisits] = useState(250);
   const [crimes, setCrimes] = useState(100);
   const [activePercentage, setActivePercentage] = useState(70);
@@ -76,9 +76,7 @@ export const CrimeStatistics = () => {
         <p className={`${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'} text-lg mt-4`}>Dynamic insights into reported crimes with real-time updates.</p>
       </div>
 
-      {/* Statistics Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-        {/* Total Visits */}
         <div className={`${theme === 'dark' ? 'bg-gray-800' : 'bg-white'} rounded-xl p-6 shadow hover:shadow-lg transition`}>
           <div className="flex items-center">
             <div className={`w-12 h-12 rounded-full ${theme === 'dark' ? 'bg-teal-700' : 'bg-teal-100'} flex items-center justify-center`}>
@@ -104,7 +102,6 @@ export const CrimeStatistics = () => {
           </div>
         </div>
 
-        {/* Total Crimes */}
         <div className={`${theme === 'dark' ? 'bg-gray-800' : 'bg-white'} rounded-xl p-6 shadow hover:shadow-lg transition`}>
           <div className="flex items-center">
             <div className={`w-12 h-12 rounded-full ${theme === 'dark' ? 'bg-red-700' : 'bg-red-100'} flex items-center justify-center`}>

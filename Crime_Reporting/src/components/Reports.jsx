@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { BsBookmarkStar } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import ReportCardLogo from "../assets/ReportCardsLogo.svg";
-import { useTheme } from "./ThemeContext"; // Import useTheme to get the theme
+import { useTheme } from "./ThemeContext";
 
 export const Reports = () => {
-  const [crimeReports, setCrimeReports] = useState([]); // All fetched reports
-  const [crimeCountsByYear, setCrimeCountsByYear] = useState({}); // Crime count grouped by year
-  const [isLoading, setIsLoading] = useState(true); // Loading state
-  const { theme } = useTheme(); // Get the current theme
+  const [crimeReports, setCrimeReports] = useState([]);
+  const [crimeCountsByYear, setCrimeCountsByYear] = useState({}); 
+  const [isLoading, setIsLoading] = useState(true); 
+  const { theme } = useTheme(); 
 
   useEffect(() => {
     fetch("https://project-2d5f7-default-rtdb.firebaseio.com/crimereport.json")

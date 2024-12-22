@@ -51,7 +51,6 @@ export const ReportDetails = () => {
       .finally(() => setIsLoading(false)); 
   }, [id]);
 
-  // Show loading spinner if data is still being fetched
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -67,9 +66,7 @@ export const ReportDetails = () => {
           Crime Report Summary for {id}
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Loop through categories and display data */}
           {categoryData.map(([category, reports]) => {
-            // Prepare data for Doughnut chart
             const chartData = {
               labels: ["Resolved", "Processing", "Pending"],
               datasets: [

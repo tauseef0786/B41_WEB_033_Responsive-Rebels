@@ -25,7 +25,6 @@ export const Navbar = () => {
   return (
     <nav className="bg-teal-900 text-white px-6 py-4 shadow-md border-b sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
-        {/* Logo and Title */}
         <Link to="/">
           <div className="flex items-center">
             <img src={logo} alt="Crime Portal Logo" className="w-10 h-10" />
@@ -33,7 +32,6 @@ export const Navbar = () => {
           </div>
         </Link>
 
-        {/* Desktop Navigation Links */}
         <div className="hidden md:flex space-x-6">
           <Link to="/crime-reports" className="hover:text-gray-300">
             Crime Reports
@@ -51,7 +49,6 @@ export const Navbar = () => {
 
         {/* Right Section */}
         <div className="hidden md:flex items-center space-x-4">
-          {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
             className="p-2 rounded-lg bg-teal-700 hover:bg-teal-600"

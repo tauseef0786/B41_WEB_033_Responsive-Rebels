@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, Clock, MapPin } from 'lucide-react';
+import Banner from '../Banner';
 
 function App() {
   const [formData, setFormData] = useState({
@@ -17,12 +18,9 @@ function App() {
   };
 
   return (
+    <>
+    <Banner/>
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-emerald-900 py-16">
-        <h1 className="text-4xl font-bold text-center text-white">Contact Us</h1>
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Left Column - Contact Information */}
@@ -143,7 +141,7 @@ function App() {
         {/* Map Section */}
         <div className="mt-12">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3619.3803678476366!2d67.0816!3d24.8815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDUyJzU0LjAiTiA2N8KwMDQnNTQuMCJF!5e0!3m2!1sen!2s!4v1635959562000!5m2!1sen!2s"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2859.710348024914!2d77.22951061627769!3d28.613939220857524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d03f4be61f3fb%3A0x87ecb2d8a8fefb32!2sNew%20Delhi%2C%20Delhi%2C%20India!5e0!3m2!1sen!2sus!4v1670515674943!5m2!1sen!2sus"
             width="100%"
             height="450"
             style={{ border: 0 }}
@@ -155,6 +153,7 @@ function App() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

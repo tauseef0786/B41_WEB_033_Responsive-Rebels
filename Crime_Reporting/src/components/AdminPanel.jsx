@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import { useTheme } from "./ThemeContext"; // Assuming ThemeContext is used globally
+import { useTheme } from "./ThemeContext"; 
 
 const AdminPanel = () => {
   const [crimeReports, setCrimeReports] = useState([]);
@@ -17,7 +17,7 @@ const AdminPanel = () => {
       );
       const data = await response.json();
       const formattedData = Object.keys(data).map((key) => ({
-        firebaseId: key, // Firebase unique key
+        firebaseId: key, 
         ...data[key],
       }));
       setCrimeReports(formattedData);

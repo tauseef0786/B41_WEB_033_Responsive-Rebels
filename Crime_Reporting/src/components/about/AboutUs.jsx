@@ -1,4 +1,5 @@
 import React from "react";
+import Banner from "../Banner";
 let arr = [
   "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80",
   'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
@@ -7,17 +8,9 @@ let arr = [
 
 function AboutUs() {
   return (
+    <>
+    <Banner/>
     <div className="min-h-screen bg-white">
-      {/* Header Section */}
-      <div className="bg-emerald-900 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold text-center text-white">
-            About Us
-          </h1>
-        </div>
-      </div>
-
-      {/* What We Do Section */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -230,6 +223,7 @@ function AboutUs() {
         </div>
       </section>
     </div>
+    </>
   );
 }
 
