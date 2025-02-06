@@ -1,8 +1,8 @@
 
-# B41_WEB_033_Responsive-Rebels
+# Project Name -Crime Portal
 
 
-Project Name -Crime Portal
+
 
 ## Introduction
 The Crime Reporting Project is a web-based application that allows users to report crimes, view reported crimes in their area, and analyze crime patterns. The system provides a user-friendly interface for both citizens and law enforcement to contribute and access crime-related information. This project aims to increase awareness, improve community safety, and facilitate more effective law enforcement responses.
